@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>运行JavaScript</title>
+<script type="text/javascript">
+function runMyCode() {
+    // 你的JavaScript代码放在这里
+    console.log("按钮被点击了！");
+    // 例如，弹出一个警告框
+    alert("你好！这是我的JavaScript代码在运行。");
+    function openWebpages(urls, interval) {
+        urls.forEach((url, index) => {
+            setTimeout(() => {
+                if (window.location.href.includes("verify.meituan.com")){
+                    alert("检测到验证页面，请点击确定以继续。");
+                    //退出网页
+                    window.close();
+                } else {
+                    let kk = window.open(url, '_blank');
+                    // 在9秒后关闭这个窗口
+                    setTimeout(() => {
+                        kk.close();
+                    }, interval * 1000);
+                }
+            }, interval * index * 1000);
+        });
+    };
+
+    function extractUrls(text) {
+        const urlRegex = /https:\/\/mobile\.yangkeduo\.com\/goods\.html\?goods_id=\d+/g;
+        ;
+        const urls = text.match(urlRegex);
+        return urls || [];
+    }
+
+
+    // 测试用的网页URL列表
+    const urls = ['https://mobile.yangkeduo.com/goods.html?goods_id=644050986571', 'https://mobile.yangkeduo.com/goods.html?goods_id=659515608001', 'https://mobile.yangkeduo.com/goods.html?goods_id=579565225757', 'https://mobile.yangkeduo.com/goods.html?goods_id=651951678035', 'https://mobile.yangkeduo.com/goods.html?goods_id=576733723045', 'https://mobile.yangkeduo.com/goods.html?goods_id=637756060499', 'https://mobile.yangkeduo.com/goods.html?goods_id=630544968368', 'https://mobile.yangkeduo.com/goods.html?goods_id=661866049706', 'https://mobile.yangkeduo.com/goods.html?goods_id=655934099875', 'https://mobile.yangkeduo.com/goods.html?goods_id=581506601373', 'https://mobile.yangkeduo.com/goods.html?goods_id=624987634197', 'https://mobile.yangkeduo.com/goods.html?goods_id=636368338584', 'https://mobile.yangkeduo.com/goods.html?goods_id=511785437502', 'https://mobile.yangkeduo.com/goods.html?goods_id=270056791845', 'https://mobile.yangkeduo.com/goods.html?goods_id=652971846305', 'https://mobile.yangkeduo.com/goods.html?goods_id=657432018624', 'https://mobile.yangkeduo.com/goods.html?goods_id=618109410037', 'https://mobile.yangkeduo.com/goods.html?goods_id=624241417590', 'https://mobile.yangkeduo.com/goods.html?goods_id=534462460411', 'https://mobile.yangkeduo.com/goods.html?goods_id=176342190377']
+
+    // 添加str的url
+    text = 0;
+    text = "<p>https://mobile.yangkeduo.com/goods.html?goods_id=608753856045<br>https://mobile.yangkeduo.com/goods.html?goods_id=484107393741<br>https://mobile.yangkeduo.com/goods.html?goods_id=637480480586<br>https://mobile.yangkeduo.com/goods.html?goods_id=553357648657<br>https://mobile.yangkeduo.com/goods.html?goods_id=652758627084<br>https://mobile.yangkeduo.com/goods.html?goods_id=623001487512<br>https://mobile.yangkeduo.com/goods.html?goods_id=517511946324<br>https://mobile.yangkeduo.com/goods.html?goods_id=624980032899<br>https://mobile.yangkeduo.com/goods.html?goods_id=495578757130<br>https://mobile.yangkeduo.com/goods.html?goods_id=649911926854<br></p>";
+    if (text) {
+        const foundUrls = extractUrls(text);
+        // 如果foundurls有值，则添加到urls列表中
+        if (foundUrls.length > 0) {
+        urls.push(...foundUrls);
+        }
+    }
+  
+
+
+    // 调用函数
+    function getRandomInt60to80() { return Math.floor(Math.random() * 21) + 65; }
+    openWebpages(urls, getRandomInt60to80());     
+    
+    
+        }
+        </script>
+        </head>
+        <body>
+            <h1>欢迎来到我的网页</h1>
+    
+    <!-- 在这里插入你的链接 -->
+    <p>点击下面的链接访问目标网站：</p>
+        <p>然后登录,两个网站都需要登录,登录以后在点开始</p> 
+        
+    <a href="https://www.dianping.com/" target="_blank">点击跳转大众点评</a>
+    <a href="https://h5.waimai.meituan.com/" target="_blank">美团外卖H5</a>
+    <a href="https://mobile.yangkeduo.com/" target="_blank">pdd移动端</a>
+    <p>感谢访问！</p>
+        <button onclick="runMyCode()">点击运行JavaScript</button>
+        <p>请注意,先打开大众点评并登录,在点击运行</p>
+        <p>请注意,如果大概10秒后没有继续弹窗,在网址右手边有个浏览器阻止弹窗,请点击,允许弹窗</p>
+        </body>
+        </html>
+    
