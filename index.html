@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>运行JavaScript</title>
+    <script type="text/javascript">
+        let isPaused = false;
+       
+        function runMyCode() {
+            console.log("按钮被点击了！");
+            alert("你好！这是我的JavaScript代码在运行。");
+
+            function openWebpages(urls, interval) {
+                let count = 0;
+                let nextUrlIndex = 1;
+                function openNextUrl() {
+                    if (isPaused) {
+                        setTimeout(openNextUrl, 1000);
+                        return;
+                    }
+                    if (nextUrlIndex >= urls.length) {
+                        document.getElementById('next-url').innerText = '已经打开了所有的网站。';
+                        return;
+                    } else {
+                        document.getElementById('next-url').innerText = `下一个将要打开的网站: ${urls[nextUrlIndex]}`;
+                    }
+                    if (count == 0) {
+                        gap = 0;
+                    } else {
+                        gap = interval;
+                    }
+
+                    const url = urls[nextUrlIndex-1];
+                    setTimeout(() => {
+                        if (window.location.href.includes("verify.meituan.com")) {
+                            alert("检测到验证页面，请点击确定以继续。");
+                            window.close();
+                        } else {
+                            let kk = window.open(url, '_blank', 'width=1,height=1,left=-1000,top=-1000');
+                            kk.blur();
+                            window.focus();
+                            setTimeout(() => {
+                                kk.close();
+                            }, interval * 1000);
+                        }
+                        count++;
+                        nextUrlIndex++;
+                        if (count % 30 === 0) {
+                            document.getElementById('next-url').innerText = `已经打开了60个网站，休息3小时。下一个将要打开的网站: ${urls[nextUrlIndex]}`;
+                            setTimeout(() => {
+                                openNextUrl();
+                            }, 1 * 60 * 60 * 1000); // 3小时
+                        } else {
+                            openNextUrl();
+                        }
+                    }, gap * 1000);
+                }
+                openNextUrl();
+            }
+             
+            // function extractUrls(text) {
+            //     const urlRegex = /https:\/\/mobile\.yangkeduo\.com\/goods\.html\?goods_id=\d+/g;
+            //     const urls = text.match(urlRegex);
+            //     return urls || [];
+            // }
+
+            function getRandomInt60to80() {
+                return Math.floor(Math.random() * 21) + 78;
+            }
+
+            const urls = ['https://mobile.yangkeduo.com/goods.html?goods_id=551563114991', 'https://mobile.yangkeduo.com/goods2.html?goods_id=526471916572', 'https://mobile.yangkeduo.com/goods.html?goods_id=495963174709', 'https://mobile.yangkeduo.com/goods3.html?goods_id=621495986880', 'https://mobile.yangkeduo.com/goods.html?goods_id=671920591719', 'https://mobile.yangkeduo.com/goods.html?goods_id=565817627511', 'https://mobile.yangkeduo.com/goods3.html?goods_id=647412886031', 'https://mobile.yangkeduo.com/goods.html?goods_id=639195705285', 'https://mobile.yangkeduo.com/goods3.html?goods_id=674543797343', 'https://mobile.yangkeduo.com/goods3.html?goods_id=385620892489', 'https://mobile.yangkeduo.com/goods2.html?goods_id=460368005718', 'https://mobile.yangkeduo.com/goods.html?goods_id=652212687061', 'https://mobile.yangkeduo.com/goods.html?goods_id=611716501551', 'https://mobile.yangkeduo.com/goods2.html?goods_id=660507294774', 'https://mobile.yangkeduo.com/goods2.html?goods_id=655295627210', 'https://mobile.yangkeduo.com/goods2.html?goods_id=555451121010', 'https://mobile.yangkeduo.com/goods3.html?goods_id=582415848467', 'https://mobile.yangkeduo.com/goods3.html?goods_id=337002380761', 'https://mobile.yangkeduo.com/goods2.html?goods_id=620470664998', 'https://mobile.yangkeduo.com/goods3.html?goods_id=672443876979', 'https://mobile.yangkeduo.com/goods3.html?goods_id=524168871593', 'https://mobile.yangkeduo.com/goods3.html?goods_id=646219818201', 'https://mobile.yangkeduo.com/goods2.html?goods_id=523929985476', 'https://mobile.yangkeduo.com/goods3.html?goods_id=478484356353', 'https://mobile.yangkeduo.com/goods3.html?goods_id=465390338197', 'https://mobile.yangkeduo.com/goods2.html?goods_id=636631783557', 'https://mobile.yangkeduo.com/goods2.html?goods_id=298831283949', 'https://mobile.yangkeduo.com/goods2.html?goods_id=304881236124', 'https://mobile.yangkeduo.com/goods.html?goods_id=579819451377', 'https://mobile.yangkeduo.com/goods2.html?goods_id=439752854807', 'https://mobile.yangkeduo.com/goods2.html?goods_id=587162037055', 'https://mobile.yangkeduo.com/goods2.html?goods_id=505049643032', 'https://mobile.yangkeduo.com/goods2.html?goods_id=653436953209', 'https://mobile.yangkeduo.com/goods3.html?goods_id=644438542262', 'https://mobile.yangkeduo.com/goods2.html?goods_id=477399928343', 'https://mobile.yangkeduo.com/goods2.html?goods_id=579786637674', 'https://mobile.yangkeduo.com/goods.html?goods_id=444766700913', 'https://mobile.yangkeduo.com/goods3.html?goods_id=562988478943', 'https://mobile.yangkeduo.com/goods.html?goods_id=484797192811', 'https://mobile.yangkeduo.com/goods.html?goods_id=421606675864', 'https://mobile.yangkeduo.com/goods2.html?goods_id=589155964913', 'https://mobile.yangkeduo.com/goods2.html?goods_id=547177732508', 'https://mobile.yangkeduo.com/goods3.html?goods_id=592763501328', 'https://mobile.yangkeduo.com/goods2.html?goods_id=373524722237', 'https://mobile.yangkeduo.com/goods3.html?goods_id=677050224475', 'https://mobile.yangkeduo.com/goods.html?goods_id=305128441734', 'https://mobile.yangkeduo.com/goods3.html?goods_id=561730776709', 'https://mobile.yangkeduo.com/goods3.html?goods_id=677082956288', 'https://mobile.yangkeduo.com/goods2.html?goods_id=525208249778', 'https://mobile.yangkeduo.com/goods3.html?goods_id=603965567987', 'https://mobile.yangkeduo.com/goods2.html?goods_id=448141448426', 'https://mobile.yangkeduo.com/goods3.html?goods_id=245636709488', 'https://mobile.yangkeduo.com/goods2.html?goods_id=566359538313', 'https://mobile.yangkeduo.com/goods3.html?goods_id=8651118161', 'https://mobile.yangkeduo.com/goods.html?goods_id=507174340517', 'https://mobile.yangkeduo.com/goods.html?goods_id=610161097944', 'https://mobile.yangkeduo.com/goods3.html?goods_id=492991605380', 'https://mobile.yangkeduo.com/goods.html?goods_id=675800767343', 'https://mobile.yangkeduo.com/goods.html?goods_id=543833774788', 'https://mobile.yangkeduo.com/goods.html?goods_id=567591089417'];
+
+            openWebpages(urls, getRandomInt60to80());
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+            document.getElementById('pause-button').innerText = isPaused ? '继续' : '暂停';
+        }
+    </script>
+</head>
+
+<body>
+    <h1>欢迎来到我的网页</h1>
+
+    <p>点击下面的链接访问目标网站：</p>
+    <p>然后登录,两个网站都需要登录,登录以后在点开始</p>
+
+    <a href="https://www.dianping.com/" target="_blank">点击跳转大众点评</a>
+    <a href="https://h5.waimai.meituan.com/" target="_blank">美团外卖H5</a>
+    <a href="https://mobile.yangkeduo.com/" target="_blank">pdd移动端</a>
+    <p>感谢访问！</p>
+    <button onclick="runMyCode()">点击运行JavaScript</button>
+    <button id="pause-button" onclick="togglePause()">暂停</button>
+    <p id="next-url">下一个将要打开的网站: </p>
+    <p>请注意,先打开大众点评并登录,在点击运行</p>
+    <p>请注意,如果没有弹窗,在网址右手边有个浏览器阻止弹窗,请点击,允许弹窗</p>
+</body>
+
+</html>
+    
